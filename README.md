@@ -135,11 +135,8 @@ when **langchain** (already installed) declares
 
 | Goal | Command | What it does | Caveats |
 |------|---------|--------------|---------|
-| **Install Langgraph 0.6.1 even though Langchain pins it < 0.3** | ```bash<br>pip install langgraph==0.6.1 --ignore-installed --no-deps<br>``` | * Ignores the “installed” package
-list (Langchain stays).<br>* Skips resolving *any* dependency checks (`--no-deps`), so pip won’t complain about Langchain’s bound. | Langchain will still *declare* a requirement that
-isn’t met.  Your code may crash or behave unpredictably. |
-| **Force Langgraph upgrade in the same env** | ```bash<br>pip install langgraph==0.6.1 --upgrade-strategy eager<br>``` | Tells the resolver to “upgrade every package that can be
-upgraded to satisfy *both* package constraints.” It will still refuse if Langchain’s bound blocks 0.6.1. | Likely still a conflict; not a real override. |
+| **Install Langgraph 0.6.1 even though Langchain pins it < 0.3** | `pip install langgraph==0.6.1 --ignore-installed --no-deps` | * Ignores the “installed” package list (Langchain stays).<br>* Skips resolving *any* dependency checks `--no-deps`), so pip won’t complain about Langchain’s bound. | Langchain will still *declare* a requirement that isn’t met.  Your code may crash or behave unpredictably. |
+| **Force Langgraph upgrade in the same env** | `pip install langgraph==0.6.1 --upgrade-strategy eager` | Tells the resolver to “upgrade every package that can be upgraded to satisfy *both* package constraints.” It will still refuse if Langchain’s bound blocks 0.6.1. | Likely still a conflict; not a real override. |
 | **Uninstall Langchain then install newer Langgraph** | 
 ```bash
 pip uninstall -y langchain
@@ -171,7 +168,7 @@ langgraph==0.6.1
 ```bash
 pip install -r requirements.txt --no-deps  # or with --ignore-installed
 ``` 
-| The resolver *trusts* anything you list; it won’t automatically adjust constraints. | Same warning: the
+ | The resolver *trusts* anything you list; it won’t automatically adjust constraints. | Same warning: the
 resulting environment may be inconsistent. |
 
 #### Why you usually don’t want to do this
